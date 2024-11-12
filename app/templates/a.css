@@ -1,0 +1,130 @@
+/* Variables y estilos básicos */
+:root {
+    --color-fondo: #1A1A1D;
+
+    --color-texto: #e7bebe;
+    --color-primario: #ac34db;
+
+    --color-boton: #2ecc71;
+    --color-boton-hover: #27ae60;
+
+    --tamaño-logo: 40px;
+    --tamaño-links: 2rem;
+    --espacio: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--espacio) 2rem;
+    background-color: var(--color-fondo);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left, .navbar-center, .navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    width: var(--tamaño-logo);
+    height: var(--tamaño-logo);
+    border-radius: 50%;
+    margin-right: var(--espacio);
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-texto);
+}
+
+.icon {
+    color: var(--color-primario);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: var(--tamaño-links);
+    text-decoration: none;
+}
+
+.icon:hover {
+    color: darken(var(--color-primario), 10%);
+}
+
+.login-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-boton);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+}
+
+.login-button:hover {
+    transform: translateY(-1px);
+    background-color: var(--color-boton-hover);
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row-reverse; /* Invierte la dirección para poner logo a la derecha */
+    }
+
+    .navbar-right {
+        display: none; /* Oculta los iconos de contacto */
+    }
+
+    .username {
+        display: none; /* Oculta los iconos de contacto */
+    }
+
+    .login-button {
+        font-size: 0.9rem; /* Ajusta el tamaño del botón */
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+
+.banner {
+    position: relative;
+    height: 80vh; /* Ocupa el 80% de la pantalla */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), 
+                url('perro.jfif') center/cover no-repeat; /* Imagen de fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.banner-content {
+    z-index: 1;
+}
+
+/* Desvanecimiento en la parte inferior */
+.banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; /* Tamaño del efecto de desvanecimiento */
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    
+}
