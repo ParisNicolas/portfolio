@@ -6,6 +6,9 @@
     <title>Paris Nicolas</title>
     <link rel="stylesheet" href="a.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,21 +24,209 @@
             <a href="curriculum.pdf" class="icon"><i class="fas fa-file-alt"></i></a>
         </div>
         <div class="navbar-right">
-            <button class="login-button">Editar</button>
+          <button class="Btn">Edit 
+            <svg class="svg" viewBox="0 0 512 512">
+              <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg>
+          </button>
         </div>
     </nav>
 
-    <!--banner-->
-    <div class="banner"></div>
-    <!--Sobre mi-->
-    <div></div>
-    <!--experiencia laboral-->
-    <div></div>
-    <!--educacion-->
-    <div></div>
-    <!--habilidades duras y blandas-->
-    <div></div>
-    <!--proyectos-->
-    <div></div>
+    <div class="presentation">
+      <div class="profile-image">
+        <img src="perro.jfif" alt="Your Image">
+      </div>
+      <div class="presentation-text">
+        <p class="greeting">Buenos dias!!</p>
+        <h1 class="name">I'm Paris Nicolas</h1>
+        <p class="description">
+          Soy un entusiasta de la programacion y la tecnologia. Me especializo en el desarrollo de aplicaciones web y disfruto liderar proyectos, aplicando mis conocimientos en distintos campos para buscar soluciones eficientes. Me motiva trabajar en equipo y aprender continuamente para enfrentar nuevos desafíos como programador.
+      </div>
+    </div>
+    <div class="explicacion">
+      <p>Me especializo en backend con Python (Flask) y con Javascript (stack MERN).</p>
+      <p>Conozco las bases de ciberseguridad, scripts y linux.</p>
+    </div>  
+
+    
+    <div class="container">
+      <div class="formacion">
+        <div class="column experience">
+          <h2>Experiencia <span class="years">04 años</span></h2>
+          <ul class="timeline">
+            <li class="timeline-item active">
+              <h3>Renault Santa Isabel<h3>
+              <p>Founding Product Designer · Full-time</p>
+              <span>2024–Present</span>
+            </li>
+          </ul>
+        </div>
+        <div class="column experience">
+          <h2>Educacion</h2>
+          <ul class="timeline">
+            <li class="timeline-item active">
+              <h3>Lic. en ciencias de la computacion  </h3>
+              <p>FAMAF Cordoba Capital</p>
+              <span>2025-2032</span>
+            </li>
+            <li class="timeline-item">
+              <h3>Tecnico en programacion<h3>
+              <p>Instituto Tecnico Renault</p>
+              <span>2018-2025</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <div class="column skills">
+          <h2>Conocimientos</h2>
+          <div class="flex">
+            <div class="section">
+              <h3>Lenguajes</h3>
+              <div class="tags">
+                <span>Python</span>
+                <span>Javascript</span>
+                <span>C++</span>  
+              </div>
+              <h3>Backend</h3>
+              <div class="tags">
+                <span>Flask</span>
+                <span>Node.js</span>  
+                <span>Express.js</span>
+                <span>MySQL</span>
+                <span>MongoDB</span>
+                <span>EJS/Jinja2</span>
+              </div>
+              <h3>Frontend</h3>
+              <div class="tags">
+                <span>React</span>
+                <span>Bootstrap</span>
+                <span>HTML/CSS</span>
+              </div>
+              <h3>Varios</h3>
+              <div class="tags">
+                <span>Ciberseguridad</span>
+                <span>Modelado 3D</span>
+                <span>Linux</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column connect">
+          <h2>Contacto</h2>
+          <h3>Mi email:</h3>
+          <div class="email-container">
+            <span class="email-icon"><i class="fa-regular fa-envelope"></i></span>
+            <span class="email-text">nicolasfranciscoparis@gmail.com</span>
+            <button class="copy-button" onclick="copyToClipboard()"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <h3>Mis redes y curriculum:</h3>
+          <div class="links">
+            <a><i class="fab fa-github"></i> Github</a>
+            <a><i class="fab fa-linkedin"></i> Linkedin</a>
+              <a class="curriculum">
+                <i class="fas fa-file-alt"></i>
+                <i class="fa-regular fa-circle-down"></i>
+              </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proyectos">
+          <h1>Proyectos</h1>
+        <div class="cards">
+          <div class="card">
+            <div class="img-proyect">
+              <img src="perro.jfif" alt="Project Image">
+            </div>
+            <div class="card-content">
+                <div class="card-title">Home Cloud</div>
+                <div class="card-subtitle">Servidor multiuso para el hogar</div>
+                <div class="card-date">Fecha: 2023-12-28</div>
+                <div class="card-tecnologies">
+                  <ul>
+                    <li>MongoDB</li>
+                    <li>Express.js</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img-proyect">
+              <img src="perro.jfif" alt="Project Image">
+            </div>
+            <div class="card-content">
+                <div class="card-title">Swipe Proyect</div>
+                <div class="card-subtitle">Kahoot en cartas</div>
+                <div class="card-date">Fecha: 2023-7-9</div>
+                <div class="card-tecnologies">
+                  <ul>
+                    <li>MongoDB</li>
+                    <li>Express.js</li>
+                    <li>Node.js</li>
+                    <li>Bootstrap</li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+          <div class="img-proyect">
+            <img src="perro.jfif" alt="Project Image">
+          </div>
+          <div class="card-content">
+              <div class="card-title">Copa Renault</div>
+              <div class="card-subtitle">Promocion de un evento deportivo</div>
+              <div class="card-date">Fecha: 2024-9-22</div>
+              <div class="card-tecnologies">
+                <ul>
+                  <li>MySQL</li>
+                  <li>Flask</li>
+                  <li>Bootstrap</li>
+                </ul>
+              </div>
+          </div>
+      </div>
+        <div class="card">
+          <div class="img-proyect">
+            <img src="perro.jfif" alt="Project Image">
+          </div>
+          <div class="card-content">
+              <div class="card-title">App de cobro</div>
+              <div class="card-subtitle">Tienda virtual</div>
+              <div class="card-date">Fecha: 2024-9-22</div>
+              <div class="card-tecnologies">
+                <ul>
+                  <li>MySQL</li>
+                  <li>Flask</li>
+                  <li>Bootstrap</li>
+                </ul>
+              </div>
+          </div>
+      </div>
+      <div class="card">
+        <div class="img-proyect">
+          <img src="perro.jfif" alt="Project Image">
+        </div>
+        <div class="card-content">
+            <div class="card-title">Aula Virtual</div>
+            <div class="card-subtitle">Simil de classroom</div>
+            <div class="card-date">Fecha: 2024-10-13</div>
+            <div class="card-tecnologies">
+              <ul>
+                <li>MySQL</li>
+                <li>Flask</li>
+                <li>Bootstrap</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+      function copyToClipboard() {
+        var copyText = document.querySelector(".email-text");
+        navigator.clipboard.writeText(copyText.textContent);
+        alert("Email copied to clipboard");
+      }
+      </script>
 </body>
 </html>
