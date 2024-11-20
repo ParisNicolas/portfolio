@@ -379,12 +379,34 @@ ul li span {
   cursor: pointer;
 }
 
+.email-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #3f413fba;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.email-container:hover {
+  transform: scale(0.99);
+}
+
+.email-container:hover .email-text {
+  transform: translate(5px);
+}
+
 .email-container .email-icon {
   margin-right: 10px;
 }
 
 .email-container .email-text {
   flex-grow: 1;
+  transition: all 0.2s ease-in;
 }
 
 .email-container .copy-button {
@@ -394,6 +416,7 @@ ul li span {
   border: none;
   cursor: pointer;
 }
+
 
 .links{
   display: flex;
@@ -410,6 +433,7 @@ ul li span {
 }
 .links a i{
   font-size: 30px;
+  margin-right: 10px;
 }
 
 .links a:hover{
@@ -423,6 +447,11 @@ ul li span {
   margin-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+  .copy-button {
+    display: none;
+  }
+}
 
 
 
@@ -486,6 +515,7 @@ h1 {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .card-content {
@@ -649,4 +679,9 @@ h1 {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+
+a {
+  text-decoration: none;
 }

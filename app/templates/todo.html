@@ -18,10 +18,10 @@
             <span class="username">Nicolas Paris</span>
         </div>
         <div class="navbar-center">
-            <a href="mailto:email@ejemplo.com" class="icon"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/usuario" class="icon"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/usuario" class="icon"><i class="fab fa-linkedin"></i></a>
-            <a href="curriculum.pdf" class="icon"><i class="fas fa-file-alt"></i></a>
+            <a href="mailto:nicolasfranciscoparis@gmail.com" target="_blank" class="icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/parisnicolas" target="_blank" class="icon"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/parisnicolas" class="icon"><i class="fab fa-linkedin"></i></a>
+            <a href="curriculum.pdf" target="_blank" class="icon"><i class="fas fa-file-alt"></i></a>
         </div>
         <div class="navbar-right">
           <button class="Btn">Edit 
@@ -33,7 +33,7 @@
 
     <div class="presentation">
       <div class="profile-image">
-        <img src="perro.jfif" alt="Your Image">
+        <img src="me_out.jpg" alt="Your Image">
       </div>
       <div class="presentation-text">
         <p class="greeting">Buenos dias!!</p>
@@ -113,16 +113,16 @@
         <div class="column connect">
           <h2>Contacto</h2>
           <h3>Mi email:</h3>
-          <div class="email-container">
+          <div class="email-container" onclick="copyToClipboard()">
             <span class="email-icon"><i class="fa-regular fa-envelope"></i></span>
             <span class="email-text">nicolasfranciscoparis@gmail.com</span>
-            <button class="copy-button" onclick="copyToClipboard()"><i class="fa-regular fa-copy"></i></button>
+            <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
           </div>
           <h3>Mis redes y curriculum:</h3>
           <div class="links">
-            <a><i class="fab fa-github"></i> Github</a>
-            <a><i class="fab fa-linkedin"></i> Linkedin</a>
-              <a class="curriculum">
+            <a href="https://github.com/parisnicolas" target="_blank"><i class="fab fa-github"></i><span>Github</span></a>
+            <a href="https://linkedin.com/in/parisnicolas" target="_blank"><i class="fab fa-linkedin"></i><span>Linkedin</span></a>
+              <a href="curriculum.pdf" target="_blank" class="curriculum">
                 <i class="fas fa-file-alt"></i>
                 <i class="fa-regular fa-circle-down"></i>
               </a>
@@ -133,9 +133,9 @@
       <div class="proyectos">
           <h1>Proyectos</h1>
         <div class="cards">
-          <div class="card">
+          <div class="card" data-link="https://github.com/parisnicolas/myPage">
             <div class="img-proyect">
-              <img src="perro.jfif" alt="Project Image">
+              <img src="homecloud.png" alt="Project Image">
             </div>
             <div class="card-content">
                 <div class="card-title">Home Cloud</div>
@@ -151,7 +151,7 @@
                 </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card" data-link="https://github.com/parisnicolas/swipe_proyect">
             <div class="img-proyect">
               <img src="perro.jfif" alt="Project Image">
             </div>
@@ -169,9 +169,9 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-link="https://github.com/ParisNicolas/CopaRenault">
           <div class="img-proyect">
-            <img src="perro.jfif" alt="Project Image">
+            <img src="coparenault.png" alt="Project Image">
           </div>
           <div class="card-content">
               <div class="card-title">Copa Renault</div>
@@ -186,9 +186,9 @@
               </div>
           </div>
       </div>
-        <div class="card">
+        <div class="card" data-link="https://github.com/pauljosuemichel/appCobro">
           <div class="img-proyect">
-            <img src="perro.jfif" alt="Project Image">
+            <img src="appcobro.png" alt="Project Image">
           </div>
           <div class="card-content">
               <div class="card-title">App de cobro</div>
@@ -203,9 +203,9 @@
               </div>
           </div>
       </div>
-      <div class="card">
+      <div class="card" data-link="https://github.com/ParisNicolas/aula-virtual">
         <div class="img-proyect">
-          <img src="perro.jfif" alt="Project Image">
+          <img src="aulavirtual.jpeg" alt="Project Image">
         </div>
         <div class="card-content">
             <div class="card-title">Aula Virtual</div>
@@ -222,6 +222,19 @@
     </div>
     </div>
     <script>
+      // Selecciona todas las cartas
+      const cards = document.querySelectorAll('.card');
+
+      // Agrega un Event Listener a cada carta
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          const link = card.getAttribute('data-link'); // Obtiene el enlace desde el atributo data-link
+          if (link) {
+            window.open(link, '_blank'); // Abre el enlace en una nueva pestaña/ventana
+          }
+        });
+      });
+
       function copyToClipboard() {
         var copyText = document.querySelector(".email-text");
         navigator.clipboard.writeText(copyText.textContent);
