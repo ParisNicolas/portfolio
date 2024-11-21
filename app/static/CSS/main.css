@@ -208,6 +208,11 @@ ul li span {
   width: 32px;
   height: 32px;
 }
+@media (min-width: 1000px) {
+  .connect{
+    min-width: 390px;
+  }
+}
 
 .connect ul {
   list-style: none;
@@ -441,6 +446,10 @@ ul li span {
   transform: scale(1.1);
 } 
 
+.links spam{
+  margin-right: 10px;
+}
+
 .connect h3{  
   font-weight: 400;
   margin-top: 1.5rem;
@@ -451,6 +460,7 @@ ul li span {
   .copy-button {
     display: none;
   }
+  
 }
 
 

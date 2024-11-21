@@ -7,11 +7,17 @@ class Usuario(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(30), nullable=False)
-    contraseña = db.Column(db.String(255), nullable=False)
+    _contraseña = db.Column(db.String(255), nullable=False)  # Atributo privado
 
-    def __init__(self, nombre, contraseña):
-        self.nombre = nombre
-        self.contraseña = bcrypt.generate_password_hash(contraseña).decode('utf-8')
+    @property
+    def contraseña(self):
+        """Obtiene la contraseña (no permitido)."""
+        raise AttributeError("La contraseña no puede ser leída directamente.")
+
+    @contraseña.setter
+    def contraseña(self, valor):
+        """Cifra y almacena la contraseña."""
+        self._contraseña = bcrypt.generate_password_hash(valor).decode('utf-8')
 
     def verificar_contraseña(self, contraseña):
         """Verifica si una contraseña coincide con el hash."""
@@ -27,6 +33,12 @@ class BaseModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     orden = db.Column(db.Integer, nullable=False)
+
+    def imprimir_elemetos(self):
+        elementos = self.query.all()
+        for i, elemento in enumerate(elementos):
+            print(f"{i}: {elemento}")
+        
 
     @staticmethod
     def asignar_ultimo_orden(model_class):
@@ -86,6 +98,9 @@ class Info(db.Model):
     data = db.Column(db.String(30), primary_key=True)
     content = db.Column(db.Text, nullable=False)
 
+    def __repr__(self):
+        return f'<Info {self.data}: {self.content}>'
+
 
 class Experiencia(BaseModel):
     __tablename__ = 'experiencias'
@@ -95,12 +110,30 @@ class Experiencia(BaseModel):
     descripcion = db.Column(db.String(80), nullable=False)
     fecha = db.Column(db.String(30), nullable=False)
 
+    def imprimir_elemetos(self):
+        elementos = self.query.all()
+        print("Listando experiencias")
+        for i, elemento in enumerate(elementos):
+            print(f"Experiencia{i}: {elemento}")
+
+    def __repr__(self):
+        return f'<{self.tipo} {self.titulo} {self.descripcion} {self.fecha}>'
+
 
 class Tecnologia(BaseModel):
     __tablename__ = 'tecnologias'
 
     tecnologia = db.Column(db.String(50), nullable=False, unique=True)
     ubicacion = db.Column(db.String(50), nullable=False)
+
+    def imprimir_elemetos(self):
+        elementos = self.query.all()
+        print("Listando tecnologias")
+        for i, elemento in enumerate(elementos):
+            print(f"Tecnologia{i}: {elemento}")
+
+    def __repr__(self):
+        return f'<{self.tecnologia} : {self.ubicacion}>'
 
 
 class Proyecto(BaseModel):
@@ -112,3 +145,12 @@ class Proyecto(BaseModel):
     descripcion = db.Column(db.String(80), nullable=False)
     fecha = db.Column(db.String(30), nullable=False)
     tecnologias = db.Column(db.String(120), nullable=False)
+
+    def imprimir_elemetos(self):
+        elementos = self.query.all()
+        print("Listando proyectos")
+        for i, elemento in enumerate(elementos):
+            print(f"Proyecto{i}: {elemento}")
+
+    def __repr__(self):
+        return f'<{self.titulo} {self.descripcion} {self.fecha} : {self.tecnologias}>'

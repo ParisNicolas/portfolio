@@ -103,7 +103,7 @@ def create_app():
     @login_required
     @app.route('/editMode')
     def editMode():
-        pass
+        return "Aun no"
 
     with app.app_context():
         # Crea las tablas
