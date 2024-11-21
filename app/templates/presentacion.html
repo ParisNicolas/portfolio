@@ -1,0 +1,18 @@
+<div class="presentation">
+    <div class="profile-image">
+        <img src="{{ url_for('static', filename='me_out.jpg') }}" alt="Your Image">
+    </div>
+    <div class="presentation-text">
+        <p class="greeting">Buenos dias!!</p>
+        <h1 class="name">I'm Paris Nicolas</h1>
+        <p class="description">
+            {{ infos['presentacion'] }}
+        </p>
+    </div>
+</div>
+
+<div class="explicacion">
+    {% for info in infos['extra'] %}
+    <p>{{info}}.</p>
+    {% endfor %}
+</div>

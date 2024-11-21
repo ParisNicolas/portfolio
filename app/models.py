@@ -22,32 +22,93 @@ class Usuario(UserMixin, db.Model):
 
 
 
-# Modelo de Partidos
-class Partido(db.Model):
-    __tablename__ = 'partidos'
+class BaseModel(db.Model):
+    __abstract__ = True  # Marca la clase como abstracta, no crea una tabla para ella
 
-    #Constantes para definir estados
-    ESTADO_PENDIENTE = "Pendiente"
-    ESTADO_FINALIZADO = "Finalizado"
-    ESTADO_CANCELADO = "Cancelado"
-
-    #Datos informativos
     id = db.Column(db.Integer, primary_key=True)
-    deporte = db.Column(db.String(100), nullable=False)
-    categoria = db.Column(db.String(20), nullable=False)
-    horario = db.Column(db.DateTime, nullable=True)
-    cancha = db.Column(db.Integer, nullable=False)
+    orden = db.Column(db.Integer, nullable=False)
 
-    #Datos del partido
-    equipo1_id = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
-    equipo2_id = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
-    puntaje1 = db.Column(db.Integer, nullable=False, default=0)
-    puntaje2 = db.Column(db.Integer, nullable=False, default=0)
-    estado = db.Column(db.String(20), nullable=False, default=ESTADO_PENDIENTE)
+    @staticmethod
+    def asignar_ultimo_orden(model_class):
+        """
+        Calcula el último valor de `orden` en la tabla del modelo dado y retorna el siguiente número.
+        """
+        ultimo_orden = db.session.query(db.func.max(model_class.orden)).scalar() or 0
+        return ultimo_orden + 1
 
-    #Relaciones
-    equipo1 = db.relationship('Equipo', foreign_keys=[equipo1_id])
-    equipo2 = db.relationship('Equipo', foreign_keys=[equipo2_id])
+    @classmethod
+    def crear_elemento(cls, **kwargs):
+        """
+        Crea un nuevo elemento del modelo, asignándole automáticamente el último valor de `orden`.
+        """
+        kwargs['orden'] = cls.asignar_ultimo_orden(cls)
+        nuevo_elemento = cls(**kwargs)
+        db.session.add(nuevo_elemento)
+        db.session.commit()
+        return nuevo_elemento
 
-    def __repr__(self):
-        return f'<Partido {self.equipo1} vs {self.equipo2} - {self.puntaje1}:{self.puntaje2}>'
+    def cambiar_orden(self, nuevo_orden):
+        """
+        Cambia el orden del elemento actual y ajusta los demás elementos para evitar conflictos.
+        """
+        if nuevo_orden < 1:
+            raise ValueError("El orden debe ser mayor o igual a 1.")
+
+        elementos = self.query.order_by(self.__class__.orden).all()
+
+        if nuevo_orden > len(elementos):
+            nuevo_orden = len(elementos)
+
+        for elem in elementos:
+            if elem.id == self.id:
+                continue
+            if elem.orden >= nuevo_orden:
+                elem.orden += 1
+
+        self.orden = nuevo_orden
+        db.session.commit()
+
+    @classmethod
+    def reordenar(cls):
+        """
+        Reorganiza los elementos de la tabla del modelo para garantizar que los valores de `orden` sean consecutivos.
+        """
+        elementos = cls.query.order_by(cls.orden).all()
+        for indice, elemento in enumerate(elementos, start=1):
+            elemento.orden = indice
+        db.session.commit()
+
+
+
+class Info(db.Model):
+    __tablename__ = 'infos'
+
+    data = db.Column(db.String(30), primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+
+
+class Experiencia(BaseModel):
+    __tablename__ = 'experiencias'
+
+    tipo = db.Column(db.String(30), nullable=False)
+    titulo = db.Column(db.String(60), nullable=False)
+    descripcion = db.Column(db.String(80), nullable=False)
+    fecha = db.Column(db.String(30), nullable=False)
+
+
+class Tecnologia(BaseModel):
+    __tablename__ = 'tecnologias'
+
+    tecnologia = db.Column(db.String(50), nullable=False, unique=True)
+    ubicacion = db.Column(db.String(50), nullable=False)
+
+
+class Proyecto(BaseModel):
+    __tablename__ = 'proyectos'
+
+    imagen = db.Column(db.String(60), nullable=False)
+    url = db.Column(db.String(60), nullable=False)
+    titulo = db.Column(db.String(50), nullable=False)
+    descripcion = db.Column(db.String(80), nullable=False)
+    fecha = db.Column(db.String(30), nullable=False)
+    tecnologias = db.Column(db.String(120), nullable=False)

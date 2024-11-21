@@ -1,0 +1,15 @@
+<div class="form-container">
+    <span class="close">&times;</span>
+	<p class="title">Modo Edicion</p>
+	<form class="form" method="post">
+		<div class="input-group">
+            {{ form.nombre.label }}
+            {{ form.nombre() }}
+		</div>
+		<div class="input-group">
+            {{ form.constraseña.label }}
+            {{ form.constraseña() }}
+		</div>
+        {{ form.submit(class='sign') }}
+	</form>
+</div>

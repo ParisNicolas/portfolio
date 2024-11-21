@@ -4,12 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Nicolas</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'navbar.html'%}
-    {% block content %}{% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    {% include 'presentacion.html'%}
+
+    <div id="popupForm" class="popup hidden">
+        {% include 'login.html'%}
+    </div>
+
+    <div class="container">
+        <div class="formacion">
+          <div class="column experience">
+            <h2>Experiencia <span class="years">04 años</span></h2>
+            <ul class="timeline">
+
+                {% for experiencia in experiencias['experiencia'] %}
+              <li class="timeline-item {%if loop.first%}active{%endif%}">
+                <h3>{{ experiencia.titulo }}<h3>
+                <p>{{ experiencia.descripcion }}</p>
+                <span>{{ experiencia.fecha }}</span>
+              </li>
+                {% endfor %}
+
+            </ul>
+          </div>
+
+          <div class="column experience">
+            <h2>Educacion</h2>
+            <ul class="timeline">
+                {% for educacion in experiencias['educacion'] %}
+              <li class="timeline-item {%if loop.first%}active{%endif%}">
+                <h3>{{ educacion.titulo }}</h3>
+                <p>{{ educacion.descripcion }}</p>
+                <span>{{ educacion.fecha }}</span>
+              </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+          <div class="column skills">
+            <h2>Conocimientos</h2>
+            <div class="flex">
+              <div class="section">
+
+                <h3>Lenguajes</h3>
+                <div class="tags">
+                    {% for lenguaje in tecnologias['Lenguajes'] %}
+                    <span>{{lenguaje.tecnologia}}</span>
+                    {% endfor %}
+                </div>
+
+                <h3>Backend</h3>
+                <div class="tags">
+                    {% for backend in tecnologias['Backend'] %}
+                    <span>{{backend.tecnologia}}</span>
+                    {% endfor %}
+                </div>
+
+                <h3>Frontend</h3>
+                <div class="tags">
+                    {% for frontend in tecnologias['Frontend'] %}
+                    <span>{{frontend.tecnologia}}</span>
+                    {% endfor %}
+                </div>
+
+                <h3>Varios</h3>
+                <div class="tags">
+                    {% for varios in tecnologias['Varios'] %}
+                    <span>{{varios.tecnologia}}</span>
+                    {% endfor %}    
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column connect">
+            <h2>Contacto</h2>
+            <h3>Mi email:</h3>
+            <div class="email-container" onclick="copyToClipboard()">
+              <span class="email-icon"><i class="fa-regular fa-envelope"></i></span>
+              <span class="email-text">nicolasfranciscoparis@gmail.com</span>
+              <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+            </div>
+            <h3>Mis redes y curriculum:</h3>
+            <div class="links">
+              <a href="https://github.com/parisnicolas" target="_blank"><i class="fab fa-github"></i><span>Github</span></a>
+              <a href="https://linkedin.com/in/parisnicolas" target="_blank"><i class="fab fa-linkedin"></i><span>Linkedin</span></a>
+                <a href="{{ url_for('static', filename='curriculum.pdf') }}" target="_blank" class="curriculum">
+                  <i class="fas fa-file-alt"></i>
+                  <i class="fa-regular fa-circle-down"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+
+    {% include 'proyectos.html'%}
+
+    <script>
+        // Selecciona todas las cartas
+        const cards = document.querySelectorAll('.card');
+  
+        // Agrega un Event Listener a cada carta
+        cards.forEach(card => {
+          card.addEventListener('click', () => {
+            const link = card.getAttribute('data-link'); // Obtiene el enlace desde el atributo data-link
+            if (link) {
+              window.open(link, '_blank'); // Abre el enlace en una nueva pestaña/ventana
+            }
+          });
+        });
+  
+        function copyToClipboard() {
+          var copyText = document.querySelector(".email-text");
+          navigator.clipboard.writeText(copyText.textContent);
+          alert("Email copied to clipboard");
+        }
+
+        
+        // Obtener elementos
+        const openFormButton = document.getElementById('openForm');
+        const popupForm = document.getElementById('popupForm');
+        const closeButton = document.querySelector('.close');
+
+        // Abrir el formulario
+        openFormButton.addEventListener('click', () => {
+            popupForm.classList.add('show');
+        });
+
+        // Cerrar el formulario
+        closeButton.addEventListener('click', () => {
+            popupForm.classList.remove('show');
+        });
+
+        // Cerrar el formulario al hacer clic fuera de él
+        window.addEventListener('click', (e) => {
+            if (e.target === popupForm) {
+                popupForm.classList.remove('show');
+            }
+        });
+
+        </script>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<div class="proyectos">
+    <h1>Proyectos</h1>
+  <div class="cards">
+    {% for proyecto in proyectos %}
+    <div class="card" data-link="{{proyecto.url}}">
+      <div class="img-proyect">
+        <img src="{{ url_for('static', filename=proyecto.imagen) }}" alt="Project Image">
+      </div>
+      <div class="card-content">
+          <div class="card-title">{{proyecto.titulo}}</div>
+          <div class="card-subtitle">{{proyecto.descripcion}}</div>
+          <div class="card-date">Fecha: {{proyecto.fecha}}</div>
+          <div class="card-tecnologies">
+            <ul>
+              {% for tecnologia in proyecto.tecnologias %}
+              <li>{{tecnologia}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
