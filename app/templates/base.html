@@ -23,7 +23,7 @@
     <div class="container">
         <div class="formacion">
           <div class="column experience">
-            <h2>Experiencia <span class="years">04 años</span></h2>
+            <h2>Experiencia</h2>
             <ul class="timeline">
 
                 {% for experiencia in experiencias['experiencia'] %}
@@ -33,12 +33,11 @@
                 <span>{{ experiencia.fecha }}</span>
               </li>
                 {% endfor %}
-
             </ul>
           </div>
 
           <div class="column experience">
-            <h2>Educacion</h2>
+            <h2>Educacion <span class="years">08 años</span></h2>
             <ul class="timeline">
                 {% for educacion in experiencias['educacion'] %}
               <li class="timeline-item {%if loop.first%}active{%endif%}">

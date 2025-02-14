@@ -59,8 +59,8 @@ def create_app():
     @app.route('/', methods=['GET','POST'])
     def home():
         infos = db.session.query(Info).all()
-        experiencias = db.session.query(Experiencia).all()
-        proyectos = db.session.query(Proyecto).all()
+        experiencias = db.session.query(Experiencia).order_by(Experiencia.orden).all()
+        proyectos = db.session.query(Proyecto).order_by(Proyecto.orden).all()
         tecnologias = db.session.query(Tecnologia).all()
 
         infos_obj = {}
